@@ -821,14 +821,25 @@ if (activeFilterAnchor && filterToggle) {
     }).map(a => a.app);
   }
   // if not otherwise sorted, use 'sort by' option
-  if (!sortedByRelevance)
-    visibleApps.sort(appSorter);
+  if (!sortedByRelevance) {
+    if (activeSort === 'explore') {
+      // Shuffle apps for "Explore" mode using Fisher-Yates
+      for (let i = visibleApps.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let t = visibleApps[i]; visibleApps[i] = visibleApps[j]; visibleApps[j] = t;
+      }
+    } else {
+      visibleApps.sort(appSorter);
+    }
+  }
 
   if (activeSort && !sortedByRelevance) { // only sort if not searching (searching already sorts)
     if (["created","modified","installs","favourites"].includes(activeSort)) {
       visibleApps = visibleApps.sort((a,b) =>
         ((appSortInfo[b.id]||{})[activeSort]||0) -
         ((appSortInfo[a.id]||{})[activeSort]||0));
+    } else if (activeSort === 'explore') {
+      // nothing to do - shuffled above
     } else throw new Error("Unknown sort type "+activeSort);
   }
 
