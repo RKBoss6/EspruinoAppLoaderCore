@@ -728,7 +728,7 @@ function refreshLibrary(options) {
       searchChip = searchParams.get("c").toLowerCase();
     }
   }
-  if (searchType === "hash" && chips.indexOf(searchValue)>=0) {
+  if (searchType === "hash") {
     searchType = "";
     searchValue = "";
     searchChip = searchValue;
