@@ -822,7 +822,7 @@ if (activeFilterAnchor && filterToggle) {
   }
   // if not otherwise sorted, use 'sort by' option
   if (!sortedByRelevance) {
-    if (activeSort === 'explore') {
+    if (activeSort === 'random') {
       // Shuffle apps for "Explore" mode using Fisher-Yates
       for (let i = visibleApps.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
@@ -838,7 +838,7 @@ if (activeFilterAnchor && filterToggle) {
       visibleApps = visibleApps.sort((a,b) =>
         ((appSortInfo[b.id]||{})[activeSort]||0) -
         ((appSortInfo[a.id]||{})[activeSort]||0));
-    } else if (activeSort === 'explore') {
+    } else if (activeSort === 'random') {
       // nothing to do - shuffled above
     } else throw new Error("Unknown sort type "+activeSort);
   }
