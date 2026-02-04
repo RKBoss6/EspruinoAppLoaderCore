@@ -642,10 +642,6 @@ function getAppHTML(app, appInstalled, forInterface) {
 
 // =========================================== Library
 
-// Initialize filter and sort dropdown references
-let filterNav = document.querySelector('.filter-nav');
-let sortNav = document.querySelector('.sort-nav');
-
 /*
  Filter types:
  .../BangleApps/#blue shows apps having "blue" in app.id or app.tag --> searchType:hash
