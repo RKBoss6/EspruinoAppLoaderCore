@@ -729,9 +729,10 @@ function refreshLibrary(options) {
     }
   }
   if (searchType === "hash") {
+    // Treat URL hash as a chip/filter identifier
+    searchChip = searchValue;
     searchType = "";
     searchValue = "";
-    searchChip = searchValue;
   }
   let filtersContainer = document.querySelector("#librarycontainer .filter-nav");
   let filterToggle = filtersContainer.querySelector('.dropdown-toggle span');
